@@ -2,20 +2,19 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.22"
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    implementation("com.google.geometry:s2-geometry:2.0.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
+testing {
+    suites {
+        val test by getting(JvmTestSuite::class) {
+            useJUnitJupiter()
+        }
+    }
 }
